@@ -1,0 +1,717 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{21D844C5-CD2E-48AF-BE78-01DC95DB3D8F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Engine</RootNamespace>
+    <AssemblyName>Engine</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include=".editorconfig" />
+    <None Include="App.config" />
+    <None Include="Content\Fonts\Debug.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Fonts\DebugBold.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Meshes\Cube.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Properties\Freecam.properties">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Properties\Terminal.properties">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Shaders\Accessibility\Colorblind.frag">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Shaders\Model.frag">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Shaders\Model.vert">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Shaders\ModelShadow.frag">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Shaders\ModelShadow.vert">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Shaders\Primitives.frag">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Shaders\Primitives2D.vert">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Shaders\Primitives3D.vert">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Shaders\ShadowMap.frag">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Shaders\ShadowMap.vert">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Shaders\ShadowMapSkeletal.vert">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Shaders\ShadowMapVisualization.frag">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Shaders\Skeletal.vert">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Shaders\Spotlight.frag">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Shaders\Sprite.frag">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Shaders\Sprite.vert">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Shaders\Sprite3D.frag">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Shaders\Sprite3D.vert">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Accessibility\FilterCommand.cs" />
+    <Compile Include="Accessibility\FilterTypes.cs" />
+    <Compile Include="Animation\Animation.cs" />
+    <Compile Include="Animation\AnimationPlayer.cs" />
+    <Compile Include="Animation\Bone.cs" />
+    <Compile Include="Animation\Keyframe.cs" />
+    <Compile Include="Animation\Skeleton.cs" />
+    <Compile Include="Animation\Timeline.cs" />
+    <Compile Include="Animation\Transform.cs" />
+    <Compile Include="Components\Motor.cs" />
+    <Compile Include="Components\Motor2D.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Core\AngleUnits.cs" />
+    <Compile Include="Core\Coordinates.cs" />
+    <Compile Include="Core\2D\RenderPosition2DField.cs" />
+    <Compile Include="Core\2D\RenderRotationField.cs" />
+    <Compile Include="Core\2D\RenderScale2DField.cs" />
+    <Compile Include="Core\2D\SourceRect.cs" />
+    <Compile Include="Core\2D\SpriteModifiers.cs" />
+    <Compile Include="Core\3D\MeshUser.cs" />
+    <Compile Include="Components\Motor3D.cs" />
+    <Compile Include="Core\3D\RenderOrientationField.cs" />
+    <Compile Include="Core\3D\RenderPosition3DField.cs" />
+    <Compile Include="Core\3D\RenderScale3DField.cs" />
+    <Compile Include="Core\Flags.cs" />
+    <Compile Include="Core\Primitive.cs" />
+    <Compile Include="Core\RenderColorField.cs" />
+    <Compile Include="Core\RenderField.cs" />
+    <Compile Include="Core\3D\Sprite3D.cs" />
+    <Compile Include="Core\TransformFlags.cs" />
+    <Compile Include="Components\ComponentCollection.cs" />
+    <Compile Include="DeltaTime.cs" />
+    <Compile Include="Entities\2D\Entity2D.cs" />
+    <Compile Include="Entities\2D\EntityHandle2D.cs" />
+    <Compile Include="Entities\2D\Scene2D.cs" />
+    <Compile Include="Entities\3D\Entity3D.cs" />
+    <Compile Include="Entities\3D\EntityAttachmentTypes3D.cs" />
+    <Compile Include="Entities\3D\EntityHandle3D.cs" />
+    <Compile Include="Entities\3D\Scene3D.cs" />
+    <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\EntityFlags.cs" />
+    <Compile Include="Entities\EntityHandle.cs" />
+    <Compile Include="Entities\Scene.cs" />
+    <Compile Include="Game2D.cs" />
+    <Compile Include="Game3D.cs" />
+    <Compile Include="Input\ClickFlags.cs" />
+    <Compile Include="Interfaces\2D\IRenderTransformable2D.cs" />
+    <Compile Include="Loops\GameLoop.cs" />
+    <Compile Include="Loops\GameLoop2D.cs" />
+    <Compile Include="Loops\GameLoop3D.cs" />
+    <Compile Include="Messaging\IReceiver.cs" />
+    <Compile Include="Physics\2D\World2D.cs" />
+    <Compile Include="Physics\3D\BatchCompressor.cs" />
+    <Compile Include="Physics\3D\Bodies3D.cs" />
+    <Compile Include="Physics\3D\BodyDescription.cs" />
+    <Compile Include="Physics\3D\BodyLayoutOptimizer.cs" />
+    <Compile Include="Physics\3D\BodyProperties.cs" />
+    <Compile Include="Physics\3D\BodyProperty.cs" />
+    <Compile Include="Physics\3D\BodyReference.cs" />
+    <Compile Include="Physics\3D\BodySet.cs" />
+    <Compile Include="Physics\3D\BoundingBoxHelpers.cs" />
+    <Compile Include="Physics\3D\Collidables\BigCompound.cs" />
+    <Compile Include="Physics\3D\Collidables\BoundingBoxBatcher.cs" />
+    <Compile Include="Physics\3D\Collidables\PhysicsBox.cs" />
+    <Compile Include="Physics\3D\Collidables\PhysicsCapsule3D.cs" />
+    <Compile Include="Physics\3D\Collidables\Collidable.cs" />
+    <Compile Include="Physics\3D\Collidables\CollidableDescription.cs" />
+    <Compile Include="Physics\3D\Collidables\CollidableReference.cs" />
+    <Compile Include="Physics\3D\Collidables\Compound.cs" />
+    <Compile Include="Physics\3D\Collidables\CompoundHelpers.cs" />
+    <Compile Include="Physics\3D\Collidables\ConvexHull.cs" />
+    <Compile Include="Physics\3D\Collidables\ConvexHullHelper.cs" />
+    <Compile Include="Physics\3D\Collidables\PhysicsCylinder.cs" />
+    <Compile Include="Physics\3D\Collidables\IShape.cs" />
+    <Compile Include="Physics\3D\Collidables\Mesh.cs" />
+    <Compile Include="Physics\3D\Collidables\MeshInertiaHelper.cs" />
+    <Compile Include="Physics\3D\Collidables\PhysicsShapes3D.cs" />
+    <Compile Include="Physics\3D\Collidables\PhysicsSphere.cs" />
+    <Compile Include="Physics\3D\Collidables\Triangle.cs" />
+    <Compile Include="Physics\3D\Collidables\TypedIndex.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\BroadPhase.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\BroadPhase_Queries.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollidableOverlapFinder.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionBatcher.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionBatcherContinuations.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTaskRegistry.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\BoxConvexHullTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\BoxCylinderTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\BoxPairTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\BoxTriangleTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\CapsuleBoxTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\CapsuleConvexHullTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\CapsuleCylinderTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\CapsulePairTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\CapsuleTriangleTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\CompoundMeshContinuations.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\CompoundPairCollisionTask.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\CompoundPairContinuations.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\CompoundPairOverlapFinder.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\CompoundPairOverlaps.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\ConvexCollisionTask.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\ConvexCompoundCollisionTask.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\ConvexCompoundContinuations.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\ConvexCompoundOverlapFinder.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\ConvexCompoundTaskOverlaps.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\ConvexHullPairTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\ConvexHullTestHelper.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\ConvexMeshContinuations.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\CylinderConvexHullTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\CylinderPairTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\ManifoldCandidateHelper.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\MeshPairContinuations.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\MeshPairOverlapFinder.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\PairTypes.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\SphereBoxTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\SphereCapsuleTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\SphereConvexHullTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\SphereCylinderTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\SpherePairTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\SphereTriangleTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\TriangleConvexHullTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\TriangleCylinderTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CollisionTasks\TrianglePairTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\CompoundMeshReduction.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\ConstraintCache.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\ConstraintRemover.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\ContactConstraintAccessor.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\ContactManifold.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\ContinuationIndex.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\ConvexContactManifoldWide.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\DepthRefiner.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\FreshnessChecker.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\InactiveSetBuilder.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\INarrowPhaseCallbacks.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\ISupportFinder.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\MeshReduction.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\NarrowPhase.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\NarrowPhaseCCDContinuations.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\NarrowPhaseConstraintUpdate.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\NarrowPhasePendingConstraintAdds.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\NarrowPhasePreflush.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\NonconvexReduction.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\PairCache.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\PairCacheIndex.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\PairCache_Activity.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\RayBatchers.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\SweepTaskRegistry.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\SweepTasks\CapsuleBoxDistanceTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\SweepTasks\CapsuleCylinderDistanceTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\SweepTasks\CapsulePairDistanceTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\SweepTasks\CompoundHomogeneousCompoundSweepTask.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\SweepTasks\CompoundPairSweepOverlapFinder.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\SweepTasks\CompoundPairSweepOverlaps.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\SweepTasks\CompoundPairSweepTask.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\SweepTasks\ConvexCompoundSweepOverlapFinder.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\SweepTasks\ConvexCompoundSweepTask.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\SweepTasks\ConvexHomogeneousCompoundSweepTask.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\SweepTasks\ConvexSweepTaskCommon.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\SweepTasks\GJKDistanceTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\SweepTasks\SphereBoxDistanceTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\SweepTasks\SphereCapsuleDistanceTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\SweepTasks\SphereCylinderDistanceTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\SweepTasks\SpherePairDistanceTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\SweepTasks\SphereTriangleDistanceTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\UntypedList.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\WideRayTester.cs" />
+    <Compile Include="Physics\3D\CollisionDetection\WorkerPairCache.cs" />
+    <Compile Include="Physics\3D\ConstraintBatch.cs" />
+    <Compile Include="Physics\3D\ConstraintGraphRemovalEnumerator.cs" />
+    <Compile Include="Physics\3D\ConstraintLayoutOptimizer.cs" />
+    <Compile Include="Physics\3D\ConstraintSet.cs" />
+    <Compile Include="Physics\3D\Constraints\AngularAxisMotor.cs" />
+    <Compile Include="Physics\3D\Constraints\AngularHinge.cs" />
+    <Compile Include="Physics\3D\Constraints\AngularMotor.cs" />
+    <Compile Include="Physics\3D\Constraints\AngularServo.cs" />
+    <Compile Include="Physics\3D\Constraints\AngularSwivelHinge.cs" />
+    <Compile Include="Physics\3D\Constraints\AreaConstraint.cs" />
+    <Compile Include="Physics\3D\Constraints\BallSocket.cs" />
+    <Compile Include="Physics\3D\Constraints\BallSocketMotor.cs" />
+    <Compile Include="Physics\3D\Constraints\BallSocketServo.cs" />
+    <Compile Include="Physics\3D\Constraints\BallSocketShared.cs" />
+    <Compile Include="Physics\3D\Constraints\CenterDistanceConstraint.cs" />
+    <Compile Include="Physics\3D\Constraints\ConstraintChecker.cs" />
+    <Compile Include="Physics\3D\Constraints\Contact\ContactConvexCommon.cs" />
+    <Compile Include="Physics\3D\Constraints\Contact\ContactConvexTypes.cs" />
+    <Compile Include="Physics\3D\Constraints\Contact\ContactNonconvexCommon.cs" />
+    <Compile Include="Physics\3D\Constraints\Contact\ContactNonconvexTypes.cs" />
+    <Compile Include="Physics\3D\Constraints\Contact\IContactConstraintDescription.cs" />
+    <Compile Include="Physics\3D\Constraints\Contact\ISolverContactDataExtractor.cs" />
+    <Compile Include="Physics\3D\Constraints\Contact\PenetrationLimit.cs" />
+    <Compile Include="Physics\3D\Constraints\Contact\PenetrationLimitOneBody.cs" />
+    <Compile Include="Physics\3D\Constraints\Contact\TangentFriction.cs" />
+    <Compile Include="Physics\3D\Constraints\Contact\TangentFrictionOneBody.cs" />
+    <Compile Include="Physics\3D\Constraints\Contact\TwistFriction.cs" />
+    <Compile Include="Physics\3D\Constraints\Contact\TwistFrictionOneBody.cs" />
+    <Compile Include="Physics\3D\Constraints\DistanceLimit.cs" />
+    <Compile Include="Physics\3D\Constraints\DistanceServo.cs" />
+    <Compile Include="Physics\3D\Constraints\FourBodyTypeProcessor.cs" />
+    <Compile Include="Physics\3D\Constraints\Hinge.cs" />
+    <Compile Include="Physics\3D\Constraints\IConstraintDescription.cs" />
+    <Compile Include="Physics\3D\Constraints\Inequality1DOF.cs" />
+    <Compile Include="Physics\3D\Constraints\InequalityHelpers.cs" />
+    <Compile Include="Physics\3D\Constraints\LinearAxisLimit.cs" />
+    <Compile Include="Physics\3D\Constraints\LinearAxisMotor.cs" />
+    <Compile Include="Physics\3D\Constraints\LinearAxisServo.cs" />
+    <Compile Include="Physics\3D\Constraints\MotorSettings.cs" />
+    <Compile Include="Physics\3D\Constraints\OneBodyAngularMotor.cs" />
+    <Compile Include="Physics\3D\Constraints\OneBodyAngularServo.cs" />
+    <Compile Include="Physics\3D\Constraints\OneBodyLinearMotor.cs" />
+    <Compile Include="Physics\3D\Constraints\OneBodyLinearServo.cs" />
+    <Compile Include="Physics\3D\Constraints\OneBodyTypeProcessor.cs" />
+    <Compile Include="Physics\3D\Constraints\PointOnLineServo.cs" />
+    <Compile Include="Physics\3D\Constraints\ServoSettings.cs" />
+    <Compile Include="Physics\3D\Constraints\SpringSettings.cs" />
+    <Compile Include="Physics\3D\Constraints\SwingLimit.cs" />
+    <Compile Include="Physics\3D\Constraints\SwivelHinge.cs" />
+    <Compile Include="Physics\3D\Constraints\ThreeBodyTypeProcessor.cs" />
+    <Compile Include="Physics\3D\Constraints\TwistLimit.cs" />
+    <Compile Include="Physics\3D\Constraints\TwistMotor.cs" />
+    <Compile Include="Physics\3D\Constraints\TwistServo.cs" />
+    <Compile Include="Physics\3D\Constraints\TwoBodyTypeProcessor.cs" />
+    <Compile Include="Physics\3D\Constraints\TypeBatch.cs" />
+    <Compile Include="Physics\3D\Constraints\TypeProcessor.cs" />
+    <Compile Include="Physics\3D\Constraints\VolumeConstraint.cs" />
+    <Compile Include="Physics\3D\Constraints\Weld.cs" />
+    <Compile Include="Physics\3D\DefaultTypes.cs" />
+    <Compile Include="Physics\3D\FallbackBatch.cs" />
+    <Compile Include="Physics\3D\HandyEnumerators.cs" />
+    <Compile Include="Physics\3D\Helpers.cs" />
+    <Compile Include="Physics\3D\IslandAwakener.cs" />
+    <Compile Include="Physics\3D\IslandScaffold.cs" />
+    <Compile Include="Physics\3D\IslandSleeper.cs" />
+    <Compile Include="Physics\3D\ITimestepper.cs" />
+    <Compile Include="Physics\3D\PoseIntegrator.cs" />
+    <Compile Include="Physics\3D\PositionFirstTimestepper.cs" />
+    <Compile Include="Physics\3D\PositionLastTimestepper.cs" />
+    <Compile Include="Physics\3D\Simulation.cs" />
+    <Compile Include="Physics\3D\SimulationAllocationSizes.cs" />
+    <Compile Include="Physics\3D\SimulationProfiler.cs" />
+    <Compile Include="Physics\3D\Simulation_Queries.cs" />
+    <Compile Include="Physics\3D\Solver.cs" />
+    <Compile Include="Physics\3D\Solver_IncrementalContactUpdate.cs" />
+    <Compile Include="Physics\3D\Solver_Intermediate.cs" />
+    <Compile Include="Physics\3D\Solver_Naive.cs" />
+    <Compile Include="Physics\3D\Solver_Solve.cs" />
+    <Compile Include="Physics\3D\StaticDescription.cs" />
+    <Compile Include="Physics\3D\StaticReference.cs" />
+    <Compile Include="Physics\3D\Statics.cs" />
+    <Compile Include="Physics\3D\SubsteppingTimestepper.cs" />
+    <Compile Include="Physics\3D\Trees\Leaf.cs" />
+    <Compile Include="Physics\3D\Trees\Node.cs" />
+    <Compile Include="Physics\3D\Trees\RayBatcher.cs" />
+    <Compile Include="Physics\3D\Trees\Tree.cs" />
+    <Compile Include="Physics\3D\Trees\Tree_Add.cs" />
+    <Compile Include="Physics\3D\Trees\Tree_BinnedRefine.cs" />
+    <Compile Include="Physics\3D\Trees\Tree_CacheOptimizer.cs" />
+    <Compile Include="Physics\3D\Trees\Tree_CollectSubtreesDirect.cs" />
+    <Compile Include="Physics\3D\Trees\Tree_Diagnostics.cs" />
+    <Compile Include="Physics\3D\Trees\Tree_IntertreeQueries.cs" />
+    <Compile Include="Physics\3D\Trees\Tree_IntertreeQueriesMT.cs" />
+    <Compile Include="Physics\3D\Trees\Tree_MultithreadedRefitRefine.cs" />
+    <Compile Include="Physics\3D\Trees\Tree_RayCast.cs" />
+    <Compile Include="Physics\3D\Trees\Tree_RefineCommon.cs" />
+    <Compile Include="Physics\3D\Trees\Tree_RefinementScheduling.cs" />
+    <Compile Include="Physics\3D\Trees\Tree_Refit.cs" />
+    <Compile Include="Physics\3D\Trees\Tree_Remove.cs" />
+    <Compile Include="Physics\3D\Trees\Tree_SelfQueries.cs" />
+    <Compile Include="Physics\3D\Trees\Tree_SelfQueriesMT.cs" />
+    <Compile Include="Physics\3D\Trees\Tree_Sweep.cs" />
+    <Compile Include="Physics\3D\Trees\Tree_SweepBuilder.cs" />
+    <Compile Include="Physics\3D\Trees\Tree_VolumeQuery.cs" />
+    <Compile Include="Physics\3D\Utility\AffineTransform.cs" />
+    <Compile Include="Physics\3D\Utility\BoundingBox.cs" />
+    <Compile Include="Physics\3D\Utility\BoundingSphere.cs" />
+    <Compile Include="Physics\3D\Utility\BundleIndexing.cs" />
+    <Compile Include="Physics\3D\Utility\Collections\ArrayEnumerator.cs" />
+    <Compile Include="Physics\3D\Utility\Collections\IComparerRef.cs" />
+    <Compile Include="Physics\3D\Utility\Collections\IEqualityComparerRef.cs" />
+    <Compile Include="Physics\3D\Utility\Collections\IndexSet.cs" />
+    <Compile Include="Physics\3D\Utility\Collections\InsertionSort.cs" />
+    <Compile Include="Physics\3D\Utility\Collections\IPredicate.cs" />
+    <Compile Include="Physics\3D\Utility\Collections\LSBRadixSort.cs" />
+    <Compile Include="Physics\3D\Utility\Collections\MSBRadixSort.cs" />
+    <Compile Include="Physics\3D\Utility\Collections\PrimitiveComparer.cs" />
+    <Compile Include="Physics\3D\Utility\Collections\QuickDictionary.cs" />
+    <Compile Include="Physics\3D\Utility\Collections\QuickList.cs" />
+    <Compile Include="Physics\3D\Utility\Collections\QuickQueue.cs" />
+    <Compile Include="Physics\3D\Utility\Collections\QuickSet.cs" />
+    <Compile Include="Physics\3D\Utility\Collections\Quicksort.cs" />
+    <Compile Include="Physics\3D\Utility\Collections\ReferenceComparer.cs" />
+    <Compile Include="Physics\3D\Utility\Collections\WrapperEqualityComparer.cs" />
+    <Compile Include="Physics\3D\Utility\Collections\WrapperPredicate.cs" />
+    <Compile Include="Physics\3D\Utility\ContainmentType.cs" />
+    <Compile Include="Physics\3D\Utility\GatherScatter.cs" />
+    <Compile Include="Physics\3D\Utility\IForEachRef.cs" />
+    <Compile Include="Physics\3D\Utility\Int2.cs" />
+    <Compile Include="Physics\3D\Utility\Int3.cs" />
+    <Compile Include="Physics\3D\Utility\IThreadDispatcher.cs" />
+    <Compile Include="Physics\3D\Utility\MathChecker.cs" />
+    <Compile Include="Physics\3D\Utility\MathHelper.cs" />
+    <Compile Include="Physics\3D\Utility\Matrix.cs" />
+    <Compile Include="Physics\3D\Utility\Matrix2x2Wide.cs" />
+    <Compile Include="Physics\3D\Utility\Matrix2x3Wide.cs" />
+    <Compile Include="Physics\3D\Utility\Matrix3x3.cs" />
+    <Compile Include="Physics\3D\Utility\Matrix3x3Wide.cs" />
+    <Compile Include="Physics\3D\Utility\Memory\Allocator.cs" />
+    <Compile Include="Physics\3D\Utility\Memory\Buffer.cs" />
+    <Compile Include="Physics\3D\Utility\Memory\BufferPool.cs" />
+    <Compile Include="Physics\3D\Utility\Memory\IdPool.cs" />
+    <Compile Include="Physics\3D\Utility\Memory\IUnmanagedMemoryPool.cs" />
+    <Compile Include="Physics\3D\Utility\Memory\ManagedIdPool.cs" />
+    <Compile Include="Physics\3D\Utility\Memory\Pool.cs" />
+    <Compile Include="Physics\3D\Utility\Memory\RawBuffer.cs" />
+    <Compile Include="Physics\3D\Utility\Memory\SpanHelper.cs" />
+    <Compile Include="Physics\3D\Utility\QuaternionEx.cs" />
+    <Compile Include="Physics\3D\Utility\QuaternionWide.cs" />
+    <Compile Include="Physics\3D\Utility\RigidTransform.cs" />
+    <Compile Include="Physics\3D\Utility\Symmetric2x2Wide.cs" />
+    <Compile Include="Physics\3D\Utility\Symmetric3x3.cs" />
+    <Compile Include="Physics\3D\Utility\Symmetric3x3Wide.cs" />
+    <Compile Include="Physics\3D\Utility\Symmetric4x4Wide.cs" />
+    <Compile Include="Physics\3D\Utility\Symmetric5x5Wide.cs" />
+    <Compile Include="Physics\3D\Utility\Symmetric6x6Wide.cs" />
+    <Compile Include="Physics\3D\Utility\Vector2Wide.cs" />
+    <Compile Include="Physics\3D\Utility\Vector3Wide.cs" />
+    <Compile Include="Physics\3D\Utility\Vector4Wide.cs" />
+    <Compile Include="Physics\3D\World3D.cs" />
+    <Compile Include="Sensors\2D\MultiSensor2D.cs" />
+    <Compile Include="Sensors\2D\Sensor2D.cs" />
+    <Compile Include="Sensors\2D\Space2D.cs" />
+    <Compile Include="Sensors\3D\MultiSensor3D.cs" />
+    <Compile Include="Sensors\3D\Sensor3D.cs" />
+    <Compile Include="Sensors\3D\Space3D.cs" />
+    <Compile Include="Shapes\Shape.cs" />
+    <Compile Include="Timing\TimedFlag.cs" />
+    <Compile Include="Editing\ArgumentTypes.cs" />
+    <Compile Include="Editing\Autocomplete.cs" />
+    <Compile Include="Editing\Argument.cs" />
+    <Compile Include="Editing\Command.cs" />
+    <Compile Include="Graphics\BufferFrequencies.cs" />
+    <Compile Include="Graphics\BufferUsages.cs" />
+    <Compile Include="Graphics\3D\Material.cs" />
+    <Compile Include="Graphics\TextureFilters.cs" />
+    <Compile Include="Graphics\TextureWraps.cs" />
+    <Compile Include="Input\Data\Controllers\ControllerData.cs" />
+    <Compile Include="Input\Data\Controllers\DualshockButtons.cs" />
+    <Compile Include="Input\Data\Controllers\DualshockData.cs" />
+    <Compile Include="Input\Data\Controllers\GamepadData.cs" />
+    <Compile Include="Input\Data\Controllers\JoystickData.cs" />
+    <Compile Include="Input\Data\Controllers\Joysticks.cs" />
+    <Compile Include="Input\Data\Controllers\XboxButtons.cs" />
+    <Compile Include="Input\IControllable.cs" />
+    <Compile Include="Input\InputBuffer.cs" />
+    <Compile Include="Input\InputFlowTypes.cs" />
+    <Compile Include="Input\InputTarget.cs" />
+    <Compile Include="Input\InputUtilities.cs" />
+    <Compile Include="Input\Processors\TextProcessor.cs" />
+    <Compile Include="Input\Processors\TextRepeatTypes.cs" />
+    <Compile Include="Interfaces\2D\IPositionContainer2D.cs" />
+    <Compile Include="Interfaces\2D\IRenderPositionable2D.cs" />
+    <Compile Include="Interfaces\2D\IRenderRotatable.cs" />
+    <Compile Include="Interfaces\2D\IRenderScalable2D.cs" />
+    <Compile Include="Interfaces\2D\IRotationContainer.cs" />
+    <Compile Include="Interfaces\2D\IScaleContainer2D.cs" />
+    <Compile Include="Interfaces\3D\IOrientationContainer.cs" />
+    <Compile Include="Interfaces\3D\IPositionContainer3D.cs" />
+    <Compile Include="Interfaces\3D\IRenderOrientable.cs" />
+    <Compile Include="Interfaces\3D\IRenderPositionable3D.cs" />
+    <Compile Include="Interfaces\3D\IRenderScalable3D.cs" />
+    <Compile Include="Interfaces\3D\IRenderTransformable3D.cs" />
+    <Compile Include="Interfaces\3D\IScaleContainer3D.cs" />
+    <Compile Include="Interfaces\3D\ITransformable3D.cs" />
+    <Compile Include="Interfaces\3D\ITransformContainer3D.cs" />
+    <Compile Include="Interfaces\IColorContainer.cs" />
+    <Compile Include="Interfaces\IComponent.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Graphics\GLUtilities.cs" />
+    <Compile Include="Graphics\3D\Rendering\AbstractRenderer3D.cs" />
+    <Compile Include="Graphics\3D\Loaders\DaeLoader.cs" />
+    <Compile Include="Graphics\3D\Rendering\MasterRenderer3D.cs" />
+    <Compile Include="Graphics\3D\MeshHandle.cs" />
+    <Compile Include="Graphics\3D\Loaders\ObjLoader.cs" />
+    <Compile Include="Graphics\3D\Rendering\MeshRenderer.cs" />
+    <Compile Include="Graphics\3D\Rendering\ModelRenderer.cs" />
+    <Compile Include="Graphics\3D\Rendering\SkeletonRenderer.cs" />
+    <Compile Include="Graphics\3D\Rendering\ShadowMapVisualizer.cs" />
+    <Compile Include="Graphics\3D\Rendering\SpriteBatch3D.cs" />
+    <Compile Include="Graphics\PrimitiveBuffer.cs" />
+    <Compile Include="Graphics\3D\Rendering\PrimitiveRenderer3D.cs" />
+    <Compile Include="Input\ClickableSet.cs" />
+    <Compile Include="Input\Data\KeyboardData.cs" />
+    <Compile Include="Input\Data\KeyModifiers.cs" />
+    <Compile Include="Input\Data\KeyPress.cs" />
+    <Compile Include="Input\IClickable.cs" />
+    <Compile Include="Interfaces\2D\IRenderTargetUser2D.cs" />
+    <Compile Include="Interfaces\3D\IRenderable3D.cs" />
+    <Compile Include="Interfaces\3D\IScalable3D.cs" />
+    <Compile Include="Interfaces\IDualRenderable.cs" />
+    <Compile Include="Interfaces\IReloadable.cs" />
+    <Compile Include="Interfaces\IRenderColorable.cs" />
+    <Compile Include="Components\Interpolation\2D\PositionInterpolator2D.cs" />
+    <Compile Include="Components\Interpolation\2D\RotationInterpolator.cs" />
+    <Compile Include="Physics\WindingTypes.cs" />
+    <Compile Include="Props\Commands\EchoCommand.cs" />
+    <Compile Include="Props\PropertyAccessor.cs" />
+    <Compile Include="Props\PropertyTypes.cs" />
+    <Compile Include="Props\PropertyConstraints.cs" />
+    <Compile Include="Props\Commands\SetCommand.cs" />
+    <Compile Include="Lighting\GlobalLight3D.cs" />
+    <Compile Include="Lighting\LightSource3D.cs" />
+    <Compile Include="Lighting\Spotlight3D.cs" />
+    <Compile Include="Localization\Language.cs" />
+    <Compile Include="Localization\Languages.cs" />
+    <Compile Include="Particles\Emitters\Emitter.cs" />
+    <Compile Include="Particles\Particle.cs" />
+    <Compile Include="Paths.cs" />
+    <Compile Include="Props\Properties.cs" />
+    <Compile Include="Sensors\Sensor.cs" />
+    <Compile Include="Sensors\SensorTypes.cs" />
+    <Compile Include="Sensors\Space.cs" />
+    <Compile Include="Shapes\2D\Arc.cs" />
+    <Compile Include="Shapes\2D\Point2D.cs" />
+    <Compile Include="Shapes\2D\Rectangle.cs" />
+    <Compile Include="Shapes\2D\ShapeHelper2D.cs" />
+    <Compile Include="Shapes\3D\Capsule3D.cs" />
+    <Compile Include="Shapes\3D\Cylinder.cs" />
+    <Compile Include="Shapes\3D\FlatShape3D.cs" />
+    <Compile Include="Shapes\3D\Line3D.cs" />
+    <Compile Include="Shapes\3D\Point3D.cs" />
+    <Compile Include="Shapes\3D\ShapeHelper3D.cs" />
+    <Compile Include="Components\Interpolation\3D\OrientationInterpolator.cs" />
+    <Compile Include="Components\Interpolation\3D\PositionInterpolator3D.cs" />
+    <Compile Include="Components\Interpolation\ColorInterpolator.cs" />
+    <Compile Include="Components\Interpolation\Interpolator.cs" />
+    <Compile Include="Structures\SafeList.cs" />
+    <Compile Include="Editing\Terminal.cs" />
+    <Compile Include="Timing\RepeatingTimer.cs" />
+    <Compile Include="Timing\SingleTimer.cs" />
+    <Compile Include="Timing\Timer.cs" />
+    <Compile Include="Timing\TimerFlags.cs" />
+    <Compile Include="Ease.cs" />
+    <Compile Include="UI\Anchors.cs" />
+    <Compile Include="UI\Atlas.cs" />
+    <Compile Include="UI\CanvasElementFlags.cs" />
+    <Compile Include="UI\DebugView.cs" />
+    <Compile Include="UI\Objects\Button.cs" />
+    <Compile Include="View\2D\PanView2D.cs" />
+    <Compile Include="View\3D\PanView3D.cs" />
+    <Compile Include="View\Camera.cs" />
+    <Compile Include="View\2D\Camera2D.cs" />
+    <Compile Include="View\3D\Camera3D.cs" />
+    <Compile Include="Core\2D\Alignments.cs" />
+    <Compile Include="Core\2D\Bounds2D.cs" />
+    <Compile Include="Core\2D\Component2D.cs" />
+    <Compile Include="Graphics\QuadSource.cs" />
+    <Compile Include="Graphics\RenderTarget.cs" />
+    <Compile Include="Graphics\RenderTargetFlags.cs" />
+    <Compile Include="Core\2D\SpriteText.cs" />
+    <Compile Include="Core\Color.cs" />
+    <Compile Include="Content\ContentCache.cs" />
+    <Compile Include="Core\3D\Model.cs" />
+    <Compile Include="Core\2D\Sprite.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="GLFW.cs" />
+    <Compile Include="Graphics\2D\Glyph.cs" />
+    <Compile Include="Graphics\3D\Mesh.cs" />
+    <Compile Include="Graphics\2D\SpriteBatch.cs" />
+    <Compile Include="Graphics\2D\SpriteFont.cs" />
+    <Compile Include="Graphics\Texture.cs" />
+    <Compile Include="Input\Data\FullInputData.cs" />
+    <Compile Include="Input\Data\InputBind.cs" />
+    <Compile Include="Input\Data\InputData.cs" />
+    <Compile Include="Input\Data\InputStates.cs" />
+    <Compile Include="Input\Data\InputTypes.cs" />
+    <Compile Include="Input\Data\MouseData.cs" />
+    <Compile Include="Input\InputProcessor.cs" />
+    <Compile Include="Interfaces\2D\IRenderable2D.cs" />
+    <Compile Include="Interfaces\2D\IRotatable.cs" />
+    <Compile Include="Interfaces\2D\IScalable2D.cs" />
+    <Compile Include="Interfaces\3D\IOrientable.cs" />
+    <Compile Include="Interfaces\IColorable.cs" />
+    <Compile Include="Interfaces\IDynamic.cs" />
+    <Compile Include="Interfaces\2D\IPositionable2D.cs" />
+    <Compile Include="Interfaces\3D\IPositionable3D.cs" />
+    <Compile Include="Interfaces\3D\IRenderTargetUser3D.cs" />
+    <Compile Include="Messaging\CoreMessageTypes.cs" />
+    <Compile Include="Messaging\MessageHandle.cs" />
+    <Compile Include="Messaging\MessageSystem.cs" />
+    <Compile Include="Graphics\GL.cs" />
+    <Compile Include="Resolution.cs" />
+    <Compile Include="Shaders\Shader.cs" />
+    <Compile Include="Shaders\ShaderAttribute.cs" />
+    <Compile Include="Shaders\ShaderTypes.cs" />
+    <Compile Include="Shapes\2D\Circle.cs" />
+    <Compile Include="Shapes\2D\Line2D.cs" />
+    <Compile Include="Shapes\2D\Shape2D.cs" />
+    <Compile Include="Shapes\2D\ShapeTypes2D.cs" />
+    <Compile Include="Shapes\3D\Box.cs" />
+    <Compile Include="Shapes\3D\Shape3D.cs" />
+    <Compile Include="Shapes\3D\ShapeTypes3D.cs" />
+    <Compile Include="Shapes\3D\Sphere.cs" />
+    <Compile Include="UI\Canvas.cs" />
+    <Compile Include="UI\CanvasElement.cs" />
+    <Compile Include="Utility\JsonUtilities.cs" />
+    <Compile Include="Utility\Utilities.cs" />
+    <Compile Include="View\CameraView.cs" />
+    <Compile Include="View\2D\CameraView2D.cs" />
+    <Compile Include="View\3D\CameraView3D.cs" />
+    <Compile Include="Graphics\Window.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="GlmSharp, Version=0.9.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GlmSharp.0.9.8\lib\Net45\GlmSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Fonts\DebugBold_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Fonts\Debug_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Progress.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Textures\Grey.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>xcopy /Y "$(SolutionDir)Engine\x86\glfw3.dll" "$(SolutionDir)LD46\bin\Debug\x86\"
+xcopy /Y "$(SolutionDir)Engine\x64\glfw3.dll" "$(SolutionDir)LD46\bin\Debug\x64\"</PreBuildEvent>
+  </PropertyGroup>
+</Project>

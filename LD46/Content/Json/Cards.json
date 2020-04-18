@@ -1,0 +1,9 @@
+﻿[
+	{
+		"Name": "Cow",
+		"Type": "Minion",
+		"Attack": 1,
+		"Defense": 0,
+		"Health": 4
+	}
+]

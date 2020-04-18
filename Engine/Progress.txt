@@ -1,0 +1,67 @@
+﻿I've already refactored the following:
+
+- Accessibility (done)
+- Components (done)
+- Components.Interpolation (done)
+- Components.Interpolation.2D (done)
+- Components.Interpolation.3D (done)
+- Content (done)
+- Core (done)
+- Core.2D (done)
+- Core.3D (done)
+- Editing (started)
+- Engine (done)
+- Entities (done)
+- Entities.2D (started) => Still needs helper methods to create sprites, rigid bodies, etc.
+- Entities.3D (started) => Still needs helper methods to create models, rigid bodies, etc.
+- Graphics (done)
+- Graphics.2D (done)
+- Graphics.3D (done)
+- Graphics.3D.Loaders
+- Graphics.3D.Rendering (started) => Still need to address meshes, skeletons, the master renderer, and the shadow map visualizer
+- Input (done)
+- Input.Data (done)
+- Input.Processors (done)
+- Interfaces (done)
+- Interfaces.2D (done)
+- Interfaces.3D (done)
+- Lighting (started) => Still need to compute shadow bounds dynamically based on the camera
+- Localization
+- Loops (started)
+- Messaging (done)
+- Particles
+- Physics (done)
+- Physics.2D
+- Physics.3D (started)
+- Props (done)
+- Props.Commands (done)
+- Sensors (done)
+- Sensors.2D (done)
+- Sensors.3D (done)
+- Shaders (done)
+- Shapes (done)
+- Shapes.2D (done)
+- Shapes.3D (done)
+- Structures (done)
+- Timing (done)
+- UI (done)
+- UI.Objects
+- Utility (done)
+- View (done)
+- View.2D (done)
+- View.3D (done)
+
+Game concepts:
+
+- You play as the evil wizard (e.g. Kammy Koopa from Thousand Year Door) as you struggle to recruit talented henchman
+  and outwit the hero (maybe you eventually turn to the good side?)
+
+- You play as a detective investigating a series of increasingly complex crimes, using a dynamic, simple, hand-drawn
+  art style and with a tone that doesn't take itself too seriously (but can still dial up the drama when needed)
+
+- Text-based adventure game that internally tracks your perceived mental state and alters the world and plot
+  accordingly during the playthrough
+
+- Doom-style FPS, but also inspired by Paper Mario (characters to speak with, items to collect, and a modified combat
+  system that's real-time, but enemies and bosses react based on timers, incoming damage, and other player actions in
+  a way that kinda mimics them taking their turn)

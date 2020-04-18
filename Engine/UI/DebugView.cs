@@ -1,0 +1,184 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Engine.Content;
+using Engine.Core;
+using Engine.Core._2D;
+using Engine.Graphics._2D;
+
+namespace Engine.UI
+{
+	public class DebugView : CanvasElement
+	{
+		private SpriteFont font;
+		private Dictionary<string, List<string>> rawGroups;
+		private Dictionary<string, List<SpriteText>> textGroups;
+		private List<string> groupOrder;
+
+		public DebugView()
+		{
+			font = ContentCache.GetFont("Debug");
+			rawGroups = new Dictionary<string, List<string>>();
+			textGroups = new Dictionary<string, List<SpriteText>>();
+			groupOrder = new List<string>();
+		}
+
+		// This is used to highlight group names in a different color (or possibly other noteworthy fields in the
+		// future).
+		public Color Highlight { get; set; } = new Color(255, 215, 0);
+
+		public void Add(string group, string value)
+		{
+			GetGroup(group).Add(value);
+		}
+
+		public List<string> GetGroup(string group)
+		{
+			if (!rawGroups.TryGetValue(group, out var list))
+			{
+				// The first entry in each block is the name of the group.
+				var groupText = new SpriteText(font, group);
+				groupText.Position.SetY(Position.y, false);
+				groupText.Color.SetValue(Highlight, false);
+
+				// The first group name will never have its X position changed by other blocks.
+				if (rawGroups.Count == 0)
+				{
+					groupText.Position.SetX(Position.x, false);
+				}
+
+				var textList = new List<SpriteText>();
+				textList.Add(groupText);
+
+				list = new List<string>();
+				rawGroups.Add(group, list);
+				textGroups.Add(group, textList);
+				groupOrder.Add(group);
+			}
+			else
+			{
+				list.Clear();
+			}
+
+			return list;
+		}
+
+		private void RefreshGroups()
+		{
+			// The X position of each block is updated dynamically each frame based on the strings added to that group.
+			// To avoid jitter, it's best to use fixed widths on numbers (especially decimal points on floats).
+			var nextX = (int)Position.x;
+
+			for (int i = 0; i < groupOrder.Count; i++)
+			{
+				var group = groupOrder[i];
+				var rawList = rawGroups[group];
+				var textList = textGroups[group];
+				var rawCount = rawList.Count;
+
+				// The first text object is the group label.
+				var entryCount = textList.Count - 1;
+
+				// If there are no entries for the current group, nothing else needs to be done (past recording the
+				// text width of the group name).
+				if (rawCount == 0)
+				{
+					nextX += font.Measure(group).x;
+
+					if (entryCount > 0)
+					{
+						for (int j = entryCount; j >= 1; j--)
+						{
+							textList[j].Dispose();
+							textList.RemoveAt(j);
+						}
+					}
+
+					continue;
+				}
+
+				// If the counts are equal, text objects need to have their values updated.
+				if (rawCount == entryCount)
+				{
+					for (int j = 0; j < entryCount; j++)
+					{
+						textList[j + 1].Value = rawList[j];
+					}
+				}
+				// If there are fewer raw entries than text objects, relevant objects have their values updated and
+				// extras are removed.
+				else if (rawCount < entryCount)
+				{
+					for (int j = 0; j < rawCount; j++)
+					{
+						textList[j + 1].Value = rawList[j];
+					}
+
+					for (int j = entryCount; j > rawCount; j--)
+					{
+						textList[j].Dispose();
+						textList.RemoveAt(j);
+					}
+				}
+				else
+				{
+					// If there are fewer text objects than raw entries, existing objects have their values update and
+					// new text objects are created to match the extra strings.
+					for (int j = 0; j < entryCount; j++)
+					{
+						textList[j + 1].Value = rawList[j];
+					}
+
+					//for (int j = entryCount; j < rawCount; j++)
+					for (int j = 0; j < rawCount - entryCount; j++)
+					{
+						// This is used to compute Y position. Note that lines are positioned such that there's an
+						// empty line between the group and the first entry.
+						var index = entryCount + j + 2;
+						var text = new SpriteText(font, rawList[j]);
+						text.Position.SetY(Position.y + index * font.Size + Math.Max(index - 1, 0) *
+							Constants.DefaultSpacing, false);
+
+						// Just like the group name, lines in the first block will never change their X position.
+						if (i == 0)
+						{
+							text.Position.SetX(nextX, false);
+						}
+
+						textList.Add(text);
+					}
+				}
+
+				// The X coordinate of all lines in the first group are always the same (equal to the element's
+				// location).
+				if (i > 0)
+				{
+					textList.ForEach(t => t.Position.SetX(nextX, false));
+				}
+
+				// This sets up the X position for the next group.
+				if (i < groupOrder.Count - 1)
+				{
+					nextX += rawList.Max(s => font.Measure(s).x) + Constants.DefaultSpacing;
+				}
+			}
+		}
+
+		public override void Draw(SpriteBatch sb, float t)
+		{
+			// This means that no debug lines were added at all (to any group).
+			if (groupOrder.Count == 0)
+			{
+				return;
+			}
+
+			RefreshGroups();
+
+			// Using group order ensures that group blocks are displayed in the order they were added.
+			foreach (var group in groupOrder)
+			{
+				textGroups[group].ForEach(text => text.Draw(sb, t));
+			}
+		}
+	}
+}
