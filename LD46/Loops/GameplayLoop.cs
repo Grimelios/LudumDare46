@@ -29,7 +29,7 @@ namespace LD46.Loops
 
 			for (int i = 0; i < 10; i++)
 			{
-				hand.Add(new Card(data[random.Next(data.Length)], true));
+				hand.Add(new Card(data[random.Next(data.Length)], false));
 			}
 
 			InputProcessor.Add(full =>

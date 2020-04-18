@@ -60,13 +60,13 @@ namespace LD46.Entities
 			cardBacking.SourceRect = new SourceRect(0, 0, texture.Width / 2, texture.Height);
 
 			Attach(new SpriteText(font, Name, Alignments.Center, true), new vec2(0, h - 28));
-			Attach(new SpriteText(font, attack.ToString(), Alignments.Center, true), new vec2(-w + Offset,
+			Attach(new SpriteText(font, health.ToString(), Alignments.Center, true), new vec2(-w + Offset,
 				-h + Offset));
-			Attach(new SpriteText(font, defense.ToString(), Alignments.Center, true), new vec2(-w + Offset * 2,
+			Attach(new SpriteText(font, maxHealth.ToString(), Alignments.Center, true), new vec2(-w + Offset * 2,
 				-h + Offset * 2));
-			Attach(new SpriteText(font, health.ToString(), Alignments.Center, true), new vec2(w - Offset,
+			Attach(new SpriteText(font, attack.ToString(), Alignments.Center, true), new vec2(w - Offset,
 				-h + Offset));
-			Attach(new SpriteText(font, maxHealth.ToString(), Alignments.Center, true), new vec2(w - Offset * 2,
+			Attach(new SpriteText(font, defense.ToString(), Alignments.Center, true), new vec2(w - Offset * 2,
 				-h + Offset * 2));
 		}
 
