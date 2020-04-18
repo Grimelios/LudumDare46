@@ -39,6 +39,7 @@ namespace LD46.Entities.Core
 
 			component.Position.SetValue(position + Utilities.Rotate(pPrime, sum), false);
 			component.Rotation.SetValue(sum, false);
+			component.Recompute(0);
 
 			return component;
 		}

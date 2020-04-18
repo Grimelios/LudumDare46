@@ -6,7 +6,7 @@ using GlmSharp;
 
 namespace Engine.Core._2D
 {
-	[DebuggerDisplay("\"{value}\"")]
+	[DebuggerDisplay("{value")]
 	public class SpriteText : Component2D
 	{
 		private SpriteFont font;
