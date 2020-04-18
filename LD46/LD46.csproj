@@ -53,6 +53,7 @@
     <Compile Include="Entities\Core\SimpleScene2D.cs" />
     <Compile Include="Entities\Deck.cs" />
     <Compile Include="Entities\Hand.cs" />
+    <Compile Include="Entities\Lane.cs" />
     <Compile Include="Loops\GameplayLoop.cs" />
     <Compile Include="Loops\LDLoop.cs" />
     <Compile Include="Loops\LoopTypes.cs" />

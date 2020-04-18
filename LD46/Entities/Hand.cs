@@ -37,6 +37,17 @@ namespace LD46.Entities
 			Refresh();
 		}
 
+		public Card Play(int index)
+		{
+			var card = cards[index];
+			card.SetRotation(0, false);
+			cards.RemoveAt(index);
+
+			Refresh();
+
+			return card;
+		}
+
 		private void Refresh()
 		{
 			var split = SplitAngle * (cards.Count - 1) / 2;

@@ -10,6 +10,8 @@ namespace LD46.Entities
 	{
 		private static Texture texture = ContentCache.GetTexture("Card.png");
 
+		public static int Width => texture.Width;
+
 		private int attack;
 		private int defense;
 		private int health;
@@ -19,6 +21,8 @@ namespace LD46.Entities
 		{
 			const int Offset = 16;
 
+			Name = data.Name;
+			Type = data.Type;
 			attack = data.Attack;
 			defense = data.Defense;
 			health = data.Health;
@@ -38,27 +42,10 @@ namespace LD46.Entities
 				-h + Offset));
 			Attach(new SpriteText(font, maxHealth.ToString(), Alignments.Center, true), new vec2(w - Offset * 2,
 				-h + Offset * 2));
-
-			/*
-			InputProcessor.Add(data =>
-			{
-				if (!data.TryGetData(out MouseData mouse))
-				{
-					return;
-				}
-
-				var left = mouse.Query(GLFW.GLFW_MOUSE_BUTTON_LEFT, InputStates.Held);
-				var right = mouse.Query(GLFW.GLFW_MOUSE_BUTTON_RIGHT, InputStates.Held);
-				var r = Rotation;
-
-				if (left ^ right)
-				{
-					r += DeltaTime.Value * (left ? -1 : 1);
-				}
-
-				SetTransform(Scene.Camera.ToWorld(mouse.Location), r, false);
-			});
-			*/
 		}
+
+		public string Name { get; }
+
+		public CardTypes Type { get; }
 	}
 }
