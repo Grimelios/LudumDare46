@@ -212,6 +212,8 @@ namespace Engine.Input
 
 			if (orderedTargets.Count == 0)
 			{
+				AdvanceStates(null);
+
 				return;
 			}
 
@@ -400,7 +402,7 @@ namespace Engine.Input
 
 		private void AdvanceStates(InputTarget target)
 		{
-			void AdvanceStates(InputStates[] states)
+			static void AdvanceStates(InputStates[] states)
 			{
 				for (int i = 0; i < states.Length; i++)
 				{

@@ -5,5 +5,12 @@
 		"Attack": 1,
 		"Defense": 0,
 		"Health": 4
+	},
+	{
+		"Name": "Fire Mage",
+		"Type": "Minion",
+		"Attack": 3,
+		"Defense": 1,
+		"Health": 6
 	}
 ]

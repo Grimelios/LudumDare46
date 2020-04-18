@@ -15,21 +15,24 @@ namespace Engine.Core._2D
 
 		private bool useLiteralMeasuring;
 
-		public SpriteText(string font, string value = null, Alignments alignment = Alignments.Left | Alignments.Top) :
+		public SpriteText(string font, string value = null, Alignments alignment = Alignments.Left | Alignments.Top,
+			bool useLiteralMeasuring = false) :
 			this(ContentCache.GetFont(font), value, alignment)
 		{
 		}
 
 		public SpriteText(SpriteFont font, string value = null, Alignments alignment = Alignments.Left |
-			Alignments.Top) : this(font, vec2.Zero, value, alignment)
+			Alignments.Top, bool useLiteralMeasuring = false) : this(font, vec2.Zero, value, alignment)
 		{
 		}
 
 		// TODO: Support modifiers on text (e.g. flip vertical or horizontal).
 		public SpriteText(SpriteFont font, vec2 position, string value = null,
-			Alignments alignment = Alignments.Left | Alignments.Top) : base(alignment, SpriteModifiers.None)
+			Alignments alignment = Alignments.Left | Alignments.Top, bool useLiteralMeasuring = false) :
+			base(alignment, SpriteModifiers.None)
 		{
 			this.font = font;
+			this.useLiteralMeasuring = useLiteralMeasuring;
 
 			Value = value;
 			Position.SetValue(position, false);

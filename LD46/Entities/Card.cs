@@ -1,11 +1,6 @@
-﻿using Engine;
-using Engine.Content;
-using Engine.Core;
+﻿using Engine.Content;
 using Engine.Core._2D;
-using Engine.Graphics._2D;
-using Engine.Input;
-using Engine.Input.Data;
-using Engine.Shapes._2D;
+using Engine.Graphics;
 using GlmSharp;
 using LD46.Entities.Core;
 
@@ -13,8 +8,7 @@ namespace LD46.Entities
 {
 	public class Card : SimpleEntity2D
 	{
-		private const int Width = 150;
-		private const int Height = 220;
+		private static Texture texture = ContentCache.GetTexture("Card.png");
 
 		private int attack;
 		private int defense;
@@ -23,9 +17,7 @@ namespace LD46.Entities
 
 		public Card(CardData data)
 		{
-			const int HalfWidth = Width / 2;
-			const int HalfHeight = Height / 2;
-			const int Offset = 15;
+			const int Offset = 16;
 
 			attack = data.Attack;
 			defense = data.Defense;
@@ -33,17 +25,21 @@ namespace LD46.Entities
 			maxHealth = health;
 
 			var font = ContentCache.GetFont("Debug");
+			var w = texture.Width / 2 - 2;
+			var h = texture.Height / 2 - 2;
 
-			Attach(new SpriteText(font, data.Name, Alignments.Center), new vec2(0, HalfHeight - Offset));
-			Attach(new SpriteText(font, attack.ToString(), Alignments.Center), new vec2(-HalfWidth + Offset,
-				-HalfHeight + Offset));
-			Attach(new SpriteText(font, defense.ToString(), Alignments.Center), new vec2(-HalfWidth + Offset * 2,
-				-HalfHeight + Offset * 2));
-			Attach(new SpriteText(font, health.ToString(), Alignments.Center), new vec2(HalfWidth - Offset,
-				-HalfHeight + Offset));
-			Attach(new SpriteText(font, maxHealth.ToString(), Alignments.Center), new vec2(HalfWidth - Offset * 2,
-				-HalfHeight + Offset * 2));
+			Attach(new Sprite(texture));
+			Attach(new SpriteText(font, data.Name, Alignments.Center, true), new vec2(0, h - 28));
+			Attach(new SpriteText(font, attack.ToString(), Alignments.Center, true), new vec2(-w + Offset,
+				-h + Offset));
+			Attach(new SpriteText(font, defense.ToString(), Alignments.Center, true), new vec2(-w + Offset * 2,
+				-h + Offset * 2));
+			Attach(new SpriteText(font, health.ToString(), Alignments.Center, true), new vec2(w - Offset,
+				-h + Offset));
+			Attach(new SpriteText(font, maxHealth.ToString(), Alignments.Center, true), new vec2(w - Offset * 2,
+				-h + Offset * 2));
 
+			/*
 			InputProcessor.Add(data =>
 			{
 				if (!data.TryGetData(out MouseData mouse))
@@ -62,16 +58,7 @@ namespace LD46.Entities
 
 				SetTransform(Scene.Camera.ToWorld(mouse.Location), r, false);
 			});
-		}
-
-		public override void Draw(SpriteBatch sb, float t)
-		{
-			var rect = new Rectangle(Position.x, Position.y, Width, Height);
-			rect.Rotation = Rotation;
-
-			sb.Draw(rect, Color.White);
-
-			base.Draw(sb, t);
+			*/
 		}
 	}
 }
