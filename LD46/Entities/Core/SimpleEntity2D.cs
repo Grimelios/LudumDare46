@@ -26,7 +26,7 @@ namespace LD46.Entities.Core
 			IsDrawEnabled = true;
 		}
 
-		protected ComponentCollection Components => components ??= new ComponentCollection();
+		public ComponentCollection Components => components ??= new ComponentCollection();
 
 		protected T Attach<T>(T component, vec2? p = null, float? r = null) where T : Component2D
 		{
@@ -100,6 +100,7 @@ namespace LD46.Entities.Core
 
 		public virtual void Update()
 		{
+			components?.Update();
 		}
 
 		public virtual void Draw(SpriteBatch sb, float t)

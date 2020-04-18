@@ -40,7 +40,6 @@ namespace LD46.Entities
 		public Card Play(int index)
 		{
 			var card = cards[index];
-			card.SetRotation(0, false);
 			cards.RemoveAt(index);
 
 			Refresh();
@@ -70,8 +69,10 @@ namespace LD46.Entities
 			{
 				var r = a + increment * i;
 				var p = basePosition + Utilities.Direction(r) * Radius;
+				var card = cards[i];
 
-				cards[i].SetTransform(p, r + Constants.PiOverTwo, false);
+				card.Snap(p);
+				card.Snap(r + Constants.PiOverTwo);
 			}
 		}
 	}

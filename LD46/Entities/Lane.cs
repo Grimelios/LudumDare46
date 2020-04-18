@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Engine;
+using Engine.Components.Interpolation._2D;
 using GlmSharp;
 
 namespace LD46.Entities
@@ -19,6 +21,8 @@ namespace LD46.Entities
 		public void Add(Card card)
 		{
 			cards.Add(card);
+			card.Snap(0);
+
 			Refresh();
 		}
 
@@ -26,11 +30,11 @@ namespace LD46.Entities
 		{
 			const int Spacing = 8;
 
-			var p = position - new vec2(((Card.Width + Spacing) * (cards.Count - 1)) / 2, 0);
+			var p = position - new vec2((Card.Width + Spacing) * (cards.Count - 1) / 2, 0);
 
 			foreach (var card in cards)
 			{
-				card.SetPosition(p, false);
+				card.Snap(p);
 				p.x += Spacing + Card.Width;
 			}
 		}

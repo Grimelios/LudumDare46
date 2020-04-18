@@ -26,6 +26,7 @@ namespace Engine.Components.Interpolation
 			
 			Start = start;
 			End = end;
+			IsEnabled = !isRepeatable;
 		}
 
 		// It's possible to modify these values mid-interpolation.
@@ -34,6 +35,8 @@ namespace Engine.Components.Interpolation
 
 		public bool IsComplete { get; private set; }
 		public bool IsEnabled { get; set; }
+
+		public float Elapsed => elapsed;
 
 		public float Duration
 		{

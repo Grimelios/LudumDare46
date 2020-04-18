@@ -27,7 +27,7 @@ namespace LD46.Loops
 			hand = new Hand(scene);
 			board = new Board();
 
-			for (int i = 0; i < 5; i++)
+			for (int i = 0; i < 10; i++)
 			{
 				hand.Add(new Card(data[random.Next(data.Length)]));
 			}

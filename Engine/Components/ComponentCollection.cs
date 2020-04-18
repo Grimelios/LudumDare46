@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Engine.Interfaces;
 
 namespace Engine.Components
@@ -18,12 +19,22 @@ namespace Engine.Components
 			return component;
 		}
 
+		public T Get<T>() where T : IComponent
+		{
+			return components.OfType<T>().FirstOrDefault();
+		}
+
 		public void Remove(IComponent component)
 		{
 			Debug.Assert(components.Contains(component), "The given component isn't part of the collection (was " +
 				"either never added or already removed).");
 
 			components.Remove(component);
+		}
+
+		public void Clear()
+		{
+			components.Clear();
 		}
 
 		public void Update()
